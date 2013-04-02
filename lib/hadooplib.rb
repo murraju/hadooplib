@@ -15,15 +15,12 @@
 # limitations under the License.
 #
 
-require "ucslib/version"
-require "ucslib/session"
-require "ucslib/provision"
-require "ucslib/parser"
-require "ucslib/update"
-require "ucslib/inventory"
-require 'ucslib/destroy'
-require 'ucslib/manage'
+#Load all java classes
+Dir.new("lib/hadooplib/jars").sort.each do | file |
+  require("lib/hadooplib/jars/" + file) if file =~ /\.jar$/
+end
 
+require 'java'
 require 'nokogiri'
 require 'rest-client'
 require 'json'
