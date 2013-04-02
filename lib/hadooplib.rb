@@ -25,3 +25,30 @@ require 'nokogiri'
 require 'rest-client'
 require 'json'
 
+
+#Load imports
+import java.net.URL
+import java.io.IOException
+import java.net.InetSocketAddress
+import java.text.SimpleDateFormat
+import java.util.Collection
+import java.util.List
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.ContentSummary
+import org.apache.hadoop.fs.DU
+import org.apache.hadoop.fs.FileStatus
+import org.apache.hadoop.fs.FileSystem
+import org.apache.hadoop.fs.FileUtil
+import org.apache.hadoop.fs.FsShell
+import org.apache.hadoop.fs.Path
+import org.apache.hadoop.fs.PathFilter
+import org.apache.hadoop.hdfs.DFSClient
+import org.apache.hadoop.hdfs.DistributedFileSystem
+import java.io.IOException
+import java.text.SimpleDateFormat
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.ContentSummary
+import org.apache.hadoop.fs.FileStatus
+import org.apache.hadoop.fs.FileSystem
+import org.apache.hadoop.fs.Path
+import org.apache.hadoop.mapred.JobConf
