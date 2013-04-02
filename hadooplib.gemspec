@@ -21,7 +21,7 @@ require "hadooplib/version"
 
 Gem::Specification.new do |s|
   s.name        = "hadooplib"
-  s.version     = Ucslib::VERSION
+  s.version     = Hadooplib::VERSION
   s.authors     = ["Murali Raju"]
   s.email       = ["murali.raju@appliv.com"]
   s.homepage    = ""
