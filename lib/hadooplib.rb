@@ -1,5 +1,5 @@
 # Author:: Murali Raju (<murali.raju@appliv.com>)
-# Copyright:: Copyright (c) 2011 Murali Raju.
+# Copyright:: Copyright (c) 2013 Murali Raju.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+
 #Load all java classes
 Dir.new("lib/hadooplib/jars").sort.each do | file |
   require("lib/hadooplib/jars/" + file) if file =~ /\.jar$/
@@ -24,6 +25,7 @@ require 'java'
 require 'nokogiri'
 require 'rest-client'
 require 'json'
+require 'hadooplib/hdfs'
 
 
 #Load imports
