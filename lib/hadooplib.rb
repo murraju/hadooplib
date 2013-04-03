@@ -16,33 +16,28 @@
 #
 
 
-#Load all java classes
-#Dir.new("hadooplib/jars").sort.each do | file |
-#  require("hadooplib/" + file) if file =~ /\.jar$/
-#end
-
 require 'java'
 require 'nokogiri'
 require 'rest-client'
 require 'json'
-require 'hadooplib/hdfs'
-require 'hadooplib/commons-configuration-1.9.jar'
-require 'hadooplib/commons-lang-2.6.jar'
-require 'hadooplib/commons-logging-1.1.1.jar'
-require 'hadooplib/hadoop-ant-1.1.2.21.jar'
-require 'hadooplib/hadoop-ant.jar'
-require 'hadooplib/hadoop-client-1.1.2.21.jar'
-require 'hadooplib/hadoop-client.jar'
-require 'hadooplib/hadoop-core-1.1.2.21.jar'
-require 'hadooplib/hadoop-core.jar'
-require 'hadooplib/hadoop-examples-1.1.2.21.jar'
-require 'hadooplib/hadoop-examples.jar'
-require 'hadooplib/hadoop-minicluster-1.1.2.21.jar'
-require 'hadooplib/hadoop-minicluster.jar'
-require 'hadooplib/hadoop-test-1.1.2.21.jar'
-require 'hadooplib/hadoop-test.jar'
-require 'hadooplib/hadoop-tools-1.1.2.21.jar'
-require 'hadooplib/hadoop-tools.jar'
+require 'hadooplib/jars/hdfs'
+require 'hadooplib/jars/commons-configuration-1.9.jar'
+require 'hadooplib/jars/commons-lang-2.6.jar'
+require 'hadooplib/jars/commons-logging-1.1.1.jar'
+require 'hadooplib/jars/hadoop-ant-1.1.2.21.jar'
+require 'hadooplib/jars/hadoop-ant.jar'
+require 'hadooplib/jars/hadoop-client-1.1.2.21.jar'
+require 'hadooplib/jars/hadoop-client.jar'
+require 'hadooplib/jars/hadoop-core-1.1.2.21.jar'
+require 'hadooplib/jars/hadoop-core.jar'
+require 'hadooplib/jars/hadoop-examples-1.1.2.21.jar'
+require 'hadooplib/jars/hadoop-examples.jar'
+require 'hadooplib/jars/hadoop-minicluster-1.1.2.21.jar'
+require 'hadooplib/jars/hadoop-minicluster.jar'
+require 'hadooplib/jars/hadoop-test-1.1.2.21.jar'
+require 'hadooplib/jars/hadoop-test.jar'
+require 'hadooplib/jars/hadoop-tools-1.1.2.21.jar'
+require 'hadooplib/jars/hadoop-tools.jar'
 
 
 

@@ -15,6 +15,11 @@
 # limitations under the License.
 #
 
+#Load all java classes
+# Dir.new("hadooplib/jars").sort.each do | file |
+#  require("hadooplib/" + file) if file =~ /\.jar$/
+# end
+
 
 #Initialize
 conf = Configuration.new
