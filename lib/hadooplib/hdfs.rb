@@ -77,7 +77,7 @@ class HDFS
     return @hdfs_items.to_json
   end
 
-  def hdfs_recurse_write_to_db(top_dir, fs, uri, cs)
+  def hdfs_recurse_write_to_db(top_dir, fs, uri, cs, db_connection, db_dataset)
     
     outer_fs = fs.list_status(top_dir)
     @total_dir_count += outer_fs.length
@@ -95,8 +95,8 @@ class HDFS
         group = myfs.get_group
         file_access_time = myfs.get_modification_time
         access_time = Time.at(file_access_time).to_java(java.util.Date)
-        @db_connection.transaction do
-              @dataset.insert(
+        db_connection.transaction do
+              dataset.insert(
                 :inner_dir => "#{inner_dir}",
                 :space_consumed => "#{space_consumed}",
                 :space_quota => "#{space_quota}",
