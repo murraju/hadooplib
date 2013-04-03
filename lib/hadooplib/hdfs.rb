@@ -24,7 +24,7 @@ class HDFS
   # Default Name example - hdfs://localhost:8020
   # Path example - '/'
   
-  def setup_environment(default_name, path)
+  def initialize(default_name, path)
     conf = Configuration.new
     conf.set("fs.default.name", default_name)
     @fs=org.apache.hadoop.fs.FileSystem.get(conf)
