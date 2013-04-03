@@ -42,5 +42,6 @@ Gem::Specification.new do |s|
   s.add_dependency("nokogiri")
   s.add_dependency("rest-client")
   s.add_dependency("json")
-  s.add_dependency("jdbc-postgres")
+  s.add_dependency("postgres-pr")
+   s.add_dependency("sequel")
 end
