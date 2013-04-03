@@ -18,3 +18,8 @@ items = hdfs_client.hdfs_recurse(top_dir, fs, uri, cs)
 
 hdfs_items = JSON.parse(items)
 
+hdfs_items.each do |item|
+  item.each do |k, v|
+    puts "#{k}: #{v}"
+  end
+end 

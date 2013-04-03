@@ -32,19 +32,19 @@ class HDFS
     @uri=@fs.get_uri.to_s
     @cs = ContentSummary.new
     @hdfs_items = []
+    @total_file_count = 0
+    @total_dir_count = 0
     
     #Explicit return vs Ruby last
-    return @fs, @top_dir, @uri, @cs, @hdfs_items 
+    return @fs, @top_dir, @uri, @cs, @hdfs_items,  @total_file_count, @total_dir_count 
   end
 
   
 
   def hdfs_recurse(top_dir, fs, uri, cs)
     
-    total_file_count = 0
-    total_dir_count = 0
     outer_fs = fs.list_status(top_dir)
-    total_dir_count += outer_fs.length
+    @total_dir_count += outer_fs.length
     outer_fs.each do |myfs|
       if myfs.is_dir
         inner_dir = myfs.get_path.to_s.gsub(uri, "")
@@ -54,7 +54,7 @@ class HDFS
         space_quota = cs.get_space_quota
         space_used = cs.get_length
         file_count = cs.file_count
-        total_file_count += file_count
+        @total_file_count += file_count
         user = myfs.get_owner
         group = myfs.get_group
         file_access_time = myfs.get_modification_time
