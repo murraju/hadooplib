@@ -31,26 +31,18 @@ class HDFS
     @top_dir=Path.new(path)
     @uri=@fs.get_uri.to_s
     @cs = ContentSummary.new
-
+    @hdfs_items = []
     
-    #Explicitly return values vs Ruby default of last
-    
-    # env = {
-    #   :fs => fs,
-    #   :top_dir => top_dir,
-    #   :uri => uri,
-    #   :cs => cs
-    # }
-    return @fs, @top_dir, @uri, @cs
+    #Explicit return vs Ruby last
+    return @fs, @top_dir, @uri, @cs, @hdfs_items 
   end
 
-
+  
 
   def hdfs_recurse(top_dir, fs, uri, cs)
     
     total_file_count = 0
     total_dir_count = 0
-    hdfs_items = []
     outer_fs = fs.list_status(top_dir)
     total_dir_count += outer_fs.length
     outer_fs.each do |myfs|
@@ -77,49 +69,14 @@ class HDFS
           :group => "#{group}",
           :access_time => "#{access_time}"
         }
-        hdfs_items << items
-        hdfs_recurse(inner_path, fs, uri, cs)
-      end
+        @hdfs_items << items 
+        #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}"
+        hdfs_recurse(inner_path, fs, uri, cs)   
+      end 
     end
-    return hdfs_items.to_json
+    return @hdfs_items.to_json
   end
 
-  # def hdfs_recurse
-  #   
-  #   items = []
-  #   outer_fs = @fs.list_status(@top_dir)
-  #   @total_dir_count += outer_fs.length
-  #   outer_fs.each do |myfs|
-  #     if myfs.is_dir
-  #       inner_dir = myfs.get_path.to_s.gsub(@uri, "")
-  #       inner_path = Path.new(inner_dir)
-  #       @cs = @fs.get_content_summary(inner_path)
-  #       space_consumed = @cs.get_space_consumed
-  #       space_quota = @cs.get_space_quota
-  #       space_used = @cs.get_length
-  #       file_count = @cs.file_count
-  #       @total_file_count += file_count
-  #       user = myfs.get_owner
-  #       group = myfs.get_group
-  #       file_access_time = myfs.get_modification_time
-  #       access_time = Time.at(file_access_time).to_java(java.util.Date)
-  #       @hdfs_items = {
-  #         :inner_dir => "#{inner_dir}",
-  #         :space_consumed => "#{space_consumed}",
-  #         :space_quota => "#{space_quota}",
-  #         :space_used => "#{space_used}",
-  #         :file_count => "#{file_count}",
-  #         :user => "#{user}",
-  #         :group => "#{group}",
-  #         :access_time => "#{access_time}"
-  #       }
-  #       items << @hdfs_items
-  #       hdfs_recurse
-  #     end
-  #   end
-  #   return items.to_json
-  # end
-  
 end
 
 
