@@ -23,3 +23,5 @@ hdfs_items.each do |item|
     puts "#{k}: #{v}"
   end
 end 
+
+puts "Total Diectories: #{hdfs_client.instance_variable_get(:@total_dir_count)} and Total Files: #{total = hdfs_client.instance_variable_get(:@total_file_count)}"
