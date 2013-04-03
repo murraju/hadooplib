@@ -22,20 +22,22 @@ class HDFS
   
   # Initialize
   # Default Name example - hdfs://localhost:8020
+  # Path example - '/'
   
   def initialize(default_name, path)
     conf = Configuration.new
     conf.set("fs.default.name", default_name)
     @fs=org.apache.hadoop.fs.FileSystem.get(conf)
+    @top_dir=Path.new(path)
     @uri=@fs.get_uri.to_s
     @cs = ContentSummary.new
-    @top_dir=Path.new(path)
     @total_file_count = 0
     @total_dir_count = 0
   end
 
+
   def hdfs_recurse
-  
+    
     items = []
     outer_fs = @fs.list_status(@top_dir)
     @total_dir_count += outer_fs.length
