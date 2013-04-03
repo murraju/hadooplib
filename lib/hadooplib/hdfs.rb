@@ -96,7 +96,7 @@ class HDFS
         file_access_time = myfs.get_modification_time
         access_time = Time.at(file_access_time).to_java(java.util.Date)
         db_connection.transaction do
-              dataset.insert(
+              db_dataset.insert(
                 :inner_dir => "#{inner_dir}",
                 :space_consumed => "#{space_consumed}",
                 :space_quota => "#{space_quota}",
