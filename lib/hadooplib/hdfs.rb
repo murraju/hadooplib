@@ -104,7 +104,7 @@ class HDFS
                 :file_count => "#{file_count}",
                 :user => "#{user}",
                 :group => "#{group}",
-                :access_time => "#{access_time}"
+                :access_time => "#{access_time}",
                 :created_at => @created_at = Time.now
                 ) 
         end
