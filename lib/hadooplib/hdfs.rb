@@ -60,7 +60,7 @@ class HDFS
         file_access_time = myfs.get_modification_time
         access_time = Time.at(file_access_time).to_java(java.util.Date)
         items = {
-          :inner_dir => "#{inner_dir}",
+          :directory => "#{inner_dir}",
           :space_consumed => "#{space_consumed}",
           :space_quota => "#{space_quota}",
           :space_used => "#{space_used}",
@@ -78,6 +78,7 @@ class HDFS
   end
 
   def hdfs_recurse_write_to_db(top_dir, fs, uri, cs, db_connection, db_dataset)
+    # Write to DB. Currently has dependency on Sequel and Postgres
     
     outer_fs = fs.list_status(top_dir)
     @total_dir_count += outer_fs.length
@@ -97,7 +98,7 @@ class HDFS
         access_time = Time.at(file_access_time).to_java(java.util.Date)
         db_connection.transaction do
               db_dataset.insert(
-                :inner_dir => "#{inner_dir}",
+                :directory => "#{inner_dir}",
                 :space_consumed => "#{space_consumed}",
                 :space_quota => "#{space_quota}",
                 :space_used => "#{space_used}",
