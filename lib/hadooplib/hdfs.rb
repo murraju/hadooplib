@@ -109,7 +109,7 @@ class HDFS
                 ) 
         end
         puts "Created record #{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}"
-        hdfs_recurse(inner_path, fs, uri, cs)   
+        hdfs_recurse(inner_path, fs, uri, cs, db_connection, db_dataset)   
       end 
     end
   end
