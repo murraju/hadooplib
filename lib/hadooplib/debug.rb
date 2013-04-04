@@ -56,7 +56,7 @@ def hdfs_recurse(top_dir, fs, uri)
       file_access_time = myfs.get_modification_time
       access_time = Time.at(file_access_time).to_java(java.util.Date)
       @hdfs_items = {
-        :inner_dir => "#{inner_dir}",
+        :directory => "#{inner_dir}",
         :space_consumed => "#{space_consumed}",
         :space_quota => "#{space_quota}",
         :space_used => "#{space_used}",
