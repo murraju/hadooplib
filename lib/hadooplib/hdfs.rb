@@ -76,6 +76,31 @@ class HDFS
     end
     return @hdfs_items.to_json
   end
+  
+  def hdfs_recurse_write_to_stdout(top_dir, fs, uri, cs)
+    
+    puts "Directory,Space Consumed,Space Used,File Count,Owner,Group,Modification Time"
+    outer_fs = fs.list_status(top_dir)
+    @total_dir_count += outer_fs.length
+    outer_fs.each do |myfs|
+      if myfs.is_dir
+        inner_dir = myfs.get_path.to_s.gsub(uri, "")
+        inner_path = Path.new(inner_dir)
+        cs = fs.get_content_summary(inner_path)
+        space_consumed = cs.get_space_consumed
+        space_quota = cs.get_space_quota
+        space_used = cs.get_length
+        file_count = cs.file_count
+        @total_file_count += file_count
+        user = myfs.get_owner
+        group = myfs.get_group
+        file_access_time = myfs.get_modification_time
+        access_time = Time.at(file_access_time).to_java(java.util.Date)
+        puts "#{inner_dir},#{space_consumed},#{space_quota},#{space_used},#{file_count},#{user},#{group},#{access_time}"
+        hdfs_recurse(inner_path, fs, uri, cs)   
+      end 
+    end
+  end
 
   def hdfs_recurse_write_to_db(top_dir, fs, uri, cs, db_connection, db_dataset)
     # Write to DB. Currently has dependency on Sequel and Postgres
