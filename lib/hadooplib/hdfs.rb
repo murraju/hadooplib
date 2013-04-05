@@ -43,6 +43,7 @@ class HDFS
 
   def hdfs_recurse(top_dir, fs, uri, cs)
     
+    # Write to JSON
     outer_fs = fs.list_status(top_dir)
     @total_dir_count += outer_fs.length
     outer_fs.each do |myfs|
@@ -79,6 +80,7 @@ class HDFS
   
   def hdfs_recurse_write_to_stdout(top_dir, fs, uri, cs)
     
+    # Write to STDOUT as csv
     puts "Directory,Space Consumed,Space Used,File Count,Owner,Group,Modification Time"
     outer_fs = fs.list_status(top_dir)
     @total_dir_count += outer_fs.length
@@ -100,6 +102,8 @@ class HDFS
         hdfs_recurse(inner_path, fs, uri, cs)   
       end 
     end
+    puts "Total Diectories: #{hdfs_client.instance_variable_get(:@total_dir_count)} and Total Files: #{total = hdfs_client.instance_variable_get(:@total_file_count)}"
+    
   end
 
   def hdfs_recurse_write_to_db(top_dir, fs, uri, cs, db_connection, db_dataset)
