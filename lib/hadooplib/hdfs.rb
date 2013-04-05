@@ -102,7 +102,7 @@ class HDFS
         hdfs_recurse(inner_path, fs, uri, cs)   
       end 
     end
-    puts "Total Diectories: #{hdfs_client.instance_variable_get(:@total_dir_count)} and Total Files: #{total = hdfs_client.instance_variable_get(:@total_file_count)}"
+    puts "Total Diectories: #{@total_dir_count)} and Total Files: #{@total_file_count)}"
     
   end
 
