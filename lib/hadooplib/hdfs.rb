@@ -102,7 +102,7 @@ class HDFS
         hdfs_recurse(inner_path, fs, uri, cs)   
       end 
     end
-    puts "Total Diectories: #{@total_dir_count} and Total Files: #{@total_file_count}"
+    puts "Total Directories: #{@total_dir_count} and Total Files: #{@total_file_count}"
     
   end
 
