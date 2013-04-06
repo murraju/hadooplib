@@ -16,7 +16,13 @@ Java 1.6 or 1.7 (OpenJDK or HotSpotVM) with JRuby 1.7.3
 Install
 =======
 
-gem install hadooplib
+Due to the size of this gem (contains the Hadoop jars), it is not available on rubygems.org. To build and install the gem, please follow the instructions below.
+
+	1. Install Jruby 1.7.3
+	2. git clone https://github.com/murraju/hadooplib.git
+	3. cd hadooplib
+	4. rake build
+	5. gem install pkg/hadooplib-<version>.gem
 
 Usage (example)
 ===============
@@ -50,7 +56,7 @@ Features
 ========
 
 1. HDFS - get HDFS metrics recursively traverse HDFS filesystem. Output to console, csv, or db (postgres)
-2. MapRed - Inprogress (check for updates)
+2. MapRed - in-progress (check for updates)
 
 
 ToDo
