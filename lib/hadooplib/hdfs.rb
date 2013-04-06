@@ -58,8 +58,8 @@ class HDFS
         @total_file_count += file_count
         user = myfs.get_owner
         group = myfs.get_group
-        file_access_time = myfs.get_modification_time
-        access_time = Time.at(file_access_time).to_java(java.util.Date)
+        access_time = java.util.Date.new(myfs.get_modification_time)
+        #access_time = Time.at(file_access_time).to_java(java.util.Date)
         items = {
           :directory => "#{inner_dir}",
           :space_consumed => "#{space_consumed}",
