@@ -1,7 +1,7 @@
 hadooplib (beta)
 ================
 
-A JRuby based Hadoop Client Library allowing to build Hadoop management applications in Ruby. Covers basic HDFS and MapRed functions using the native Hadoop 1.1.2 APIs.
+A JRuby based Hadoop Client Library allowing to build Hadoop Management Applications in Ruby. Covers basic HDFS and MapRed functions using the native Hadoop 1.1.2 APIs.
 
 
 Version 0.0.1
@@ -18,7 +18,7 @@ Install
 
 Due to the size of this gem (contains the Hadoop jars), it is not available on rubygems.org. To build and install the gem, please follow the instructions below.
 
-	1. Install Jruby 1.7.3
+	1. Install JRuby 1.7.3
 	2. git clone https://github.com/murraju/hadooplib.git
 	3. cd hadooplib
 	4. rake build
