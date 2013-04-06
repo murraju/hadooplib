@@ -1,4 +1,5 @@
-= hadooplib (beta)
+hadooplib (beta)
+================
 
 A JRuby based Hadoop Client Library allowing to build Hadoop management applications in Ruby. The basic HDFS and MapRed functions using the native Hadoop 1.1.2 APIs.
 
@@ -7,11 +8,13 @@ Version 0.0.1
 
 First HDFS functions.
 
-== Install
+Install
+=======
 
 gem install hadooplib
 
-== Usage (example)
+Usage (example)
+===============
 
 	require 'hadooplib'
 
@@ -38,12 +41,15 @@ gem install hadooplib
 
 
 
-== Features
+Features
+========
 
-HDFS - get HDFS metrics recursively traverse HDFS filesystem. Output to console, csv, or db (postgres)
+1. HDFS - get HDFS metrics recursively traverse HDFS filesystem. Output to console, csv, or db (postgres)
+2. MapRed - Inprogress (check for updates)
 
 
-== ToDo
+ToDo
+====
 
 *More HDFS and begin MapRed functions
 
