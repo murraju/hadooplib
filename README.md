@@ -1,12 +1,12 @@
 hadooplib (beta)
 ================
 
-A JRuby based Hadoop Client Library allowing to build Hadoop management applications in Ruby. The basic HDFS and MapRed functions using the native Hadoop 1.1.2 APIs.
+A JRuby based Hadoop Client Library allowing to build Hadoop management applications in Ruby. Covers basic HDFS and MapRed functions using the native Hadoop 1.1.2 APIs.
 
 
 Version 0.0.1
 
-First HDFS functions.
+First set of HDFS functions.
 
 Requirements
 ============
