@@ -1,8 +1,18 @@
+= hadooplib (beta)
+
+A JRuby based Hadoop Client Library allowing to build Hadoop management applications in Ruby. The basic HDFS and MapRed functions using the native Hadoop 1.1.2 APIs.
 
 
+Version 0.0.1
 
-Example Usage
-=============
+First HDFS functions.
+
+== Install
+
+gem install hadooplib
+
+== Usage (example)
+
 	require 'hadooplib'
 
 	default_name = 'hdfs://localhost:8020'
@@ -25,3 +35,34 @@ Example Usage
 	end 
 
 	puts "Total Diectories: #{hdfs_client.instance_variable_get(:@total_dir_count)} and Total Files: #{total = hdfs_client.instance_variable_get(:@total_file_count)}"
+
+
+
+== Features
+
+HDFS - get HDFS metrics recursively traverse HDFS filesystem. Output to console, csv, or db (postgres)
+
+
+== ToDo
+
+*More HDFS and begin MapRed functions
+
+
+== Contributing to hadooplib
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
+* Start a feature/bugfix branch.
+* Commit and push until you are happy with your contribution.
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Copyright (c) 2013 Murali Raju. See LICENSE.txt for further details.
+
+
+
+
+
+
