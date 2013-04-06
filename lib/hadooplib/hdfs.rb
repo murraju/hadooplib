@@ -96,8 +96,8 @@ class HDFS
         @total_file_count += file_count
         user = myfs.get_owner
         group = myfs.get_group
-        file_access_time = myfs.get_modification_time
-        access_time = Time.at(file_access_time).to_java(java.util.Date)
+        access_time = java.util.Date.new(myfs.get_modification_time)
+        #access_time = Time.at(file_access_time).to_java(java.util.Date)
         puts "#{inner_dir},#{space_consumed},#{space_quota},#{space_used},#{file_count},#{user},#{group},#{access_time}"
         hdfs_recurse(inner_path, fs, uri, cs)   
       end 
@@ -123,8 +123,8 @@ class HDFS
         @total_file_count += file_count
         user = myfs.get_owner
         group = myfs.get_group
-        file_access_time = myfs.get_modification_time
-        access_time = Time.at(file_access_time).to_java(java.util.Date)
+        access_time = java.util.Date.new(myfs.get_modification_time)
+        #access_time = Time.at(file_access_time).to_java(java.util.Date)
         db_connection.transaction do
               db_dataset.insert(
                 :directory => "#{inner_dir}",
