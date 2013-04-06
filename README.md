@@ -55,7 +55,7 @@ Usage (example)
 Features
 ========
 
-1. HDFS - get HDFS metrics recursively traverse HDFS filesystem. Output to console, csv, or db (postgres)
+1. HDFS - get HDFS metrics after recursively traversing the filesystem. Output to console, csv, or db (postgres). 
 2. MapRed - in-progress (check for updates)
 
 
