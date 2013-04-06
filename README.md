@@ -8,6 +8,11 @@ Version 0.0.1
 
 First HDFS functions.
 
+Requirements
+============
+
+Java 1.6 or 1.7 (OpenJDK or HotSpotVM) with JRuby 1.7.3
+
 Install
 =======
 
