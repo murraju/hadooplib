@@ -28,17 +28,18 @@ fs=org.apache.hadoop.fs.FileSystem.get(conf)
 uri=fs.get_uri.to_s
 cs = ContentSummary.new
 top_dir=Path.new('/')
+#file_status = FileStatus.new()
 
 
 #HDFS recurse
 @total_file_count = 0
 @total_dir_count = 0
+@hdfs_items = []
 
 
-
-def hdfs_recurse(top_dir, fs, uri)
+def hdfs_recurse(top_dir, fs, uri, cs)
   
-  items = []
+  # Write to JSON
   outer_fs = fs.list_status(top_dir)
   @total_dir_count += outer_fs.length
   outer_fs.each do |myfs|
@@ -55,7 +56,7 @@ def hdfs_recurse(top_dir, fs, uri)
       group = myfs.get_group
       access_time = java.util.Date.new(myfs.get_modification_time)
       #access_time = Time.at(file_access_time).to_java(java.util.Date)
-      @hdfs_items = {
+      items = {
         :directory => "#{inner_dir}",
         :space_consumed => "#{space_consumed}",
         :space_quota => "#{space_quota}",
@@ -64,10 +65,12 @@ def hdfs_recurse(top_dir, fs, uri)
         :user => "#{user}",
         :group => "#{group}",
         :access_time => "#{access_time}"
+        #:replication => "#{replication}"
       }
-      items << @hdfs_items
-      hdfs_recurse(inner_path, fs, uri)
-    end
+      @hdfs_items << items 
+      #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}"
+      hdfs_recurse(inner_path, fs, uri, cs)   
+    end 
   end
-  return items.to_json
+  return @hdfs_items.to_json
 end
