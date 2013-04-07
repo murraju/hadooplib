@@ -48,15 +48,15 @@ import java.text.SimpleDateFormat
 import java.util.Collection
 import java.util.List
 
-import java.io.BufferedInputStream
-import java.io.BufferedOutputStream
-import java.io.File;
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
+# import java.io.BufferedInputStream
+# import java.io.BufferedOutputStream
+# import java.io.File;
+# import java.io.FileInputStream
+# import java.io.FileOutputStream
+# import java.io.InputStream
+# import java.io.OutputStream
 
+import java.io.IOException
 
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.ContentSummary
