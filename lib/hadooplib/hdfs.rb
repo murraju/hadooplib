@@ -69,15 +69,79 @@ class HDFS
           :user => "#{user}",
           :group => "#{group}",
           :access_time => "#{access_time}",
-          :replication => "#{replication}"
+          :replication => "0"
         }
         @hdfs_items << items 
         #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}"
-        hdfs_recurse(inner_path, fs, uri, cs)   
+        hdfs_recurse(inner_path, fs, uri, cs)
+      else
+        #puts myfs.methods
+        dir_with_file = myfs.get_path.to_s.gsub(uri, "")
+        user = myfs.get_owner
+        group = myfs.get_group
+        space_consumed = myfs.getLen
+        space_used = myfs.getLen
+        access_time = java.util.Date.new(myfs.get_modification_time)
+        replication = myfs.get_replication
+        items = {
+          :directory => "#{dir_with_file}",
+          :space_consumed => "#{space_consumed}",
+          :space_quota => "#{space_quota}",
+          :space_used => "#{space_used}",
+          :file_count => "#{file_count}",
+          :user => "#{user}",
+          :group => "#{group}",
+          :access_time => "#{access_time}",
+          :replication => "#{replication}"
+        }
+        @hdfs_items << items
+        #puts "#{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}" 
       end 
     end
     return @hdfs_items.to_json
   end
+
+
+# Original method without non_dir path
+
+  # def hdfs_recurse(top_dir, fs, uri, cs)
+    
+  #   # Write to JSON
+  #   outer_fs = fs.list_status(top_dir)
+  #   @total_dir_count += outer_fs.length
+  #   outer_fs.each do |myfs|
+  #     if myfs.is_dir
+  #       inner_dir = myfs.get_path.to_s.gsub(uri, "")
+  #       inner_path = Path.new(inner_dir)
+  #       cs = fs.get_content_summary(inner_path)
+  #       replication = myfs.get_replication
+  #       space_consumed = cs.get_space_consumed
+  #       space_quota = cs.get_space_quota
+  #       space_used = cs.get_length
+  #       file_count = cs.file_count
+  #       @total_file_count += file_count
+  #       user = myfs.get_owner
+  #       group = myfs.get_group
+  #       access_time = java.util.Date.new(myfs.get_modification_time)
+  #       #access_time = Time.at(file_access_time).to_java(java.util.Date)
+  #       items = {
+  #         :directory => "#{inner_dir}",
+  #         :space_consumed => "#{space_consumed}",
+  #         :space_quota => "#{space_quota}",
+  #         :space_used => "#{space_used}",
+  #         :file_count => "#{file_count}",
+  #         :user => "#{user}",
+  #         :group => "#{group}",
+  #         :access_time => "#{access_time}",
+  #         :replication => "#{replication}"
+  #       }
+  #       @hdfs_items << items 
+  #       #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}"
+  #       hdfs_recurse(inner_path, fs, uri, cs)   
+  #     end 
+  #   end
+  #   return @hdfs_items.to_json
+  # end
 
   
   def hdfs_recurse_write_to_stdout(top_dir, fs, uri, cs)
