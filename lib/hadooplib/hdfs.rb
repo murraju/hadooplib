@@ -73,7 +73,7 @@ class HDFS
           :replication => "#{replication}"
         }
         @hdfs_items << items 
-        #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}"
+        #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}"
         hdfs_recurse(inner_path, fs, uri, cs)   
       end 
     end
