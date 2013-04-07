@@ -48,14 +48,14 @@ import java.text.SimpleDateFormat
 import java.util.Collection
 import java.util.List
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 
 
 import org.apache.hadoop.conf.Configuration
@@ -70,14 +70,14 @@ import org.apache.hadoop.fs.PathFilter
 import org.apache.hadoop.fs.ContentSummary
 import org.apache.hadoop.fs.FileStatus
 import org.apache.hadoop.fs.FileSystem
-import org.apache.hadoop.fs.BlockLocation;
-import org.apache.hadoop.fs.FSDataInputStream;
-import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.BlockLocation
+import org.apache.hadoop.fs.FSDataInputStream
+import org.apache.hadoop.fs.FSDataOutputStream
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.hdfs.DFSClient
 import org.apache.hadoop.hdfs.DistributedFileSystem
-import org.apache.hadoop.hdfs.DistributedFileSystem;
-import org.apache.hadoop.hdfs.protocol.DatanodeInfo;
+import org.apache.hadoop.hdfs.DistributedFileSystem
+import org.apache.hadoop.hdfs.protocol.DatanodeInfo
 
 
 import org.apache.hadoop.mapred.JobConf
