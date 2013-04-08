@@ -52,6 +52,7 @@ class HDFS
         cs = fs.get_content_summary(inner_path)
         replication = myfs.get_replication
         permission  = myfs.get_permission
+        block_size  = myfs.get_block_size
         space_consumed = cs.get_space_consumed
         space_quota = cs.get_space_quota
         space_used = cs.get_length
@@ -72,7 +73,8 @@ class HDFS
           :group => "#{group}",
           :access_time => "#{access_time}",
           :replication => "0",
-          :permission => "#{permission}"
+          :permission => "#{permission}",
+          :block_size => "#{block_size}"
         }
         @hdfs_items << items 
         #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}"
@@ -88,6 +90,7 @@ class HDFS
         access_time = java.util.Date.new(myfs.get_modification_time)
         replication = myfs.get_replication
         permission  = myfs.get_permission
+        block_size  = myfs.get_block_size
         items = {
           :path_suffix => "#{dir_with_file}",
           :type => "FILE",
@@ -99,7 +102,8 @@ class HDFS
           :group => "#{group}",
           :access_time => "#{access_time}",
           :replication => "#{replication}",
-          :permission => "#{permission}"
+          :permission => "#{permission}",
+          :block_size => "#{block_size}"
         }
         @hdfs_items << items
         #puts "#{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}" 
@@ -206,6 +210,7 @@ class HDFS
           file_count = cs.file_count
           replication = myfs.get_replication
           permission  = myfs.get_permission
+          block_size  = myfs.get_block_size
           @total_file_count += file_count
           user = myfs.get_owner
           group = myfs.get_group
@@ -223,10 +228,11 @@ class HDFS
                   :access_time => "#{access_time}",
                   :replication => "#{replication}",
                   :permission => "#{permission}",
+                  :block_size => "#{block_size}",
                   :created_at => @created_at = Time.now
                   )
                 end
-          puts "Created record #{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}"
+          puts "Created record #{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}:#{block_size}"
           hdfs_recurse_write_to_db(inner_path, fs, uri, cs, db_connection, db_dataset) 
         else
           dir_with_file = myfs.get_path.to_s.gsub(uri, "")
@@ -239,6 +245,7 @@ class HDFS
           access_time = java.util.Date.new(myfs.get_modification_time)
           replication = myfs.get_replication
           permission  = myfs.get_permission
+          block_size  = myfs.get_block_size
           db_connection.transaction do
                 db_dataset.insert(
                   :path_suffix => "#{dir_with_file}",
@@ -251,11 +258,12 @@ class HDFS
                   :access_time => "#{access_time}",
                   :replication => "#{replication}",
                   :permission => "#{permission}",
+                  :block_size => "#{block_size}",
                   :created_at => @created_at = Time.now
                   )
         
                 end
-            puts "Created record #{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}"   
+            puts "Created record #{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}:#{block_size}"   
         end
     
     end

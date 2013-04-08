@@ -75,6 +75,7 @@ def hdfs_recurse(top_dir, fs, uri, cs)
       #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}"
       hdfs_recurse(inner_path, fs, uri, cs)
     else
+      puts myfs.methods
       dir_with_file = myfs.get_path.to_s.gsub(uri, "")
       user = myfs.get_owner
       group = myfs.get_group
