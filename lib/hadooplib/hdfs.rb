@@ -165,7 +165,16 @@ class HDFS
         access_time = java.util.Date.new(myfs.get_modification_time)
         #access_time = Time.at(file_access_time).to_java(java.util.Date)
         puts "#{inner_dir},#{space_consumed},#{space_quota},#{space_used},#{file_count},#{user},#{group},#{access_time},#{replication}"
-        hdfs_recurse(inner_path, fs, uri, cs)   
+        hdfs_recurse(inner_path, fs, uri, cs)
+      else
+        dir_with_file = myfs.get_path.to_s.gsub(uri, "")
+        user = myfs.get_owner
+        group = myfs.get_group
+        space_consumed = myfs.getLen
+        space_used = myfs.getLen
+        access_time = java.util.Date.new(myfs.get_modification_time)
+        replication = myfs.get_replication
+        puts "#{dir_with_file},#{space_consumed},#{space_quota},#{space_used},#{file_count},#{user},#{group},#{access_time},#{replication}"   
       end 
     end
     puts "Total Directories: #{@total_dir_count} and Total Files: #{@total_file_count}"
