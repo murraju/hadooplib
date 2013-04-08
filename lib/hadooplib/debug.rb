@@ -48,6 +48,7 @@ def hdfs_recurse(top_dir, fs, uri, cs)
       inner_path = Path.new(inner_dir)
       cs = fs.get_content_summary(inner_path)
       replication = myfs.get_replication
+      permission  = myfs.get_permission
       space_consumed = cs.get_space_consumed
       space_quota = cs.get_space_quota
       space_used = cs.get_length
@@ -58,7 +59,8 @@ def hdfs_recurse(top_dir, fs, uri, cs)
       access_time = java.util.Date.new(myfs.get_modification_time)
       #access_time = Time.at(file_access_time).to_java(java.util.Date)
       items = {
-        :directory => "#{inner_dir}",
+        :path_suffix => "#{inner_dir}",
+        :type => "DIRECTORY",
         :space_consumed => "#{space_consumed}",
         :space_quota => "#{space_quota}",
         :space_used => "#{space_used}",
@@ -66,22 +68,26 @@ def hdfs_recurse(top_dir, fs, uri, cs)
         :user => "#{user}",
         :group => "#{group}",
         :access_time => "#{access_time}",
-        :replication => "0"
+        :replication => "0",
+        :permission => "#{permission}"
       }
-      #@hdfs_items << items 
-      puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}"
+      @hdfs_items << items 
+      #puts "#{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}"
       hdfs_recurse(inner_path, fs, uri, cs)
     else
-      #puts myfs.methods
       dir_with_file = myfs.get_path.to_s.gsub(uri, "")
       user = myfs.get_owner
       group = myfs.get_group
       space_consumed = myfs.getLen
       space_used = myfs.getLen
+      space_quota = '-1'
+      file_count = '1'
       access_time = java.util.Date.new(myfs.get_modification_time)
       replication = myfs.get_replication
+      permission  = myfs.get_permission
       items = {
-        :directory => "#{dir_with_file}",
+        :path_suffix => "#{dir_with_file}",
+        :type => "FILE",
         :space_consumed => "#{space_consumed}",
         :space_quota => "#{space_quota}",
         :space_used => "#{space_used}",
@@ -89,11 +95,12 @@ def hdfs_recurse(top_dir, fs, uri, cs)
         :user => "#{user}",
         :group => "#{group}",
         :access_time => "#{access_time}",
-        :replication => "#{replication}"
+        :replication => "#{replication}",
+        :permission => "#{permission}"
       }
-      #@hdfs_items << items
-      puts "#{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}" 
+      @hdfs_items << items
+      #puts "#{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}" 
     end 
   end
-  #return @hdfs_items.to_json
+  return @hdfs_items.to_json
 end
