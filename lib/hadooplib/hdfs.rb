@@ -182,7 +182,6 @@ class HDFS
       end 
     end
     #puts "Total Directories: #{@total_dir_count} and Total Files: #{@total_file_count}"
-    
   end
 
   def hdfs_recurse_write_to_db(top_dir, fs, uri, cs, db_connection, db_dataset)
