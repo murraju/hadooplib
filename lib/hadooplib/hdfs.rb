@@ -197,65 +197,69 @@ class HDFS
     @total_dir_count += outer_fs.length
     outer_fs.each do |myfs|
       if myfs.is_dir
-        inner_dir = myfs.get_path.to_s.gsub(uri, "")
-        inner_path = Path.new(inner_dir)
-        cs = fs.get_content_summary(inner_path)
-        space_consumed = cs.get_space_consumed
-        space_quota = cs.get_space_quota
-        space_used = cs.get_length
-        file_count = cs.file_count
-        replication = myfs.get_replication
-        permission  = myfs.get_permission
-        @total_file_count += file_count
-        user = myfs.get_owner
-        group = myfs.get_group
-        access_time = java.util.Date.new(myfs.get_modification_time)
-        #access_time = Time.at(file_access_time).to_java(java.util.Date)
-        db_connection.transaction do
-              db_dataset.insert(
-                :path_suffix => "#{inner_dir}",
-                :space_consumed => "#{space_consumed}",
-                :space_quota => "#{space_quota}",
-                :space_used => "#{space_used}",
-                :file_count => "#{file_count}",
-                :user => "#{user}",
-                :group => "#{group}",
-                :access_time => "#{access_time}",
-                :replication => "#{replication}",
-                :permission => "#{permission}",
-                :created_at => @created_at = Time.now
-                )
-      else
-        dir_with_file = myfs.get_path.to_s.gsub(uri, "")
-        user = myfs.get_owner
-        group = myfs.get_group
-        space_consumed = myfs.getLen
-        space_used = myfs.getLen
-        space_quota = '-1'
-        file_count = '1'
-        access_time = java.util.Date.new(myfs.get_modification_time)
-        replication = myfs.get_replication
-        permission  = myfs.get_permission
-        db_connection.transaction do
-              db_dataset.insert(
-                :path_suffix => "#{inner_dir}",
-                :space_consumed => "#{space_consumed}",
-                :space_quota => "#{space_quota}",
-                :space_used => "#{space_used}",
-                :file_count => "#{file_count}",
-                :user => "#{user}",
-                :group => "#{group}",
-                :access_time => "#{access_time}",
-                :replication => "#{replication}",
-                :permission => "#{permission}",
-                :created_at => @created_at = Time.now
-                )
+          inner_dir = myfs.get_path.to_s.gsub(uri, "")
+          inner_path = Path.new(inner_dir)
+          cs = fs.get_content_summary(inner_path)
+          space_consumed = cs.get_space_consumed
+          space_quota = cs.get_space_quota
+          space_used = cs.get_length
+          file_count = cs.file_count
+          replication = myfs.get_replication
+          permission  = myfs.get_permission
+          @total_file_count += file_count
+          user = myfs.get_owner
+          group = myfs.get_group
+          access_time = java.util.Date.new(myfs.get_modification_time)
+          #access_time = Time.at(file_access_time).to_java(java.util.Date)
+          db_connection.transaction do
+                db_dataset.insert(
+                  :path_suffix => "#{inner_dir}",
+                  :space_consumed => "#{space_consumed}",
+                  :space_quota => "#{space_quota}",
+                  :space_used => "#{space_used}",
+                  :file_count => "#{file_count}",
+                  :user => "#{user}",
+                  :group => "#{group}",
+                  :access_time => "#{access_time}",
+                  :replication => "#{replication}",
+                  :permission => "#{permission}",
+                  :created_at => @created_at = Time.now
+                  )
+                end
+          puts "Created record #{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}"
+          hdfs_recurse_write_to_db(inner_path, fs, uri, cs, db_connection, db_dataset) 
+        else
+          dir_with_file = myfs.get_path.to_s.gsub(uri, "")
+          user = myfs.get_owner
+          group = myfs.get_group
+          space_consumed = myfs.getLen
+          space_used = myfs.getLen
+          space_quota = '-1'
+          file_count = '1'
+          access_time = java.util.Date.new(myfs.get_modification_time)
+          replication = myfs.get_replication
+          permission  = myfs.get_permission
+          db_connection.transaction do
+                db_dataset.insert(
+                  :path_suffix => "#{dir_with_file}",
+                  :space_consumed => "#{space_consumed}",
+                  :space_quota => "#{space_quota}",
+                  :space_used => "#{space_used}",
+                  :file_count => "#{file_count}",
+                  :user => "#{user}",
+                  :group => "#{group}",
+                  :access_time => "#{access_time}",
+                  :replication => "#{replication}",
+                  :permission => "#{permission}",
+                  :created_at => @created_at = Time.now
+                  )
         
-      end
-        puts "Created record #{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{user}:#{group}:#{access_time}:#{replication}"
-        hdfs_recurse_write_to_db(inner_path, fs, uri, cs, db_connection, db_dataset)   
-      end 
+                end
+            puts "Created record #{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}"   
+        end
+    
     end
+  
   end
 
 end
