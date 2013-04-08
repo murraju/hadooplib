@@ -149,7 +149,7 @@ class HDFS
   def hdfs_recurse_write_to_stdout(top_dir, fs, uri, cs)
     
     # Write to STDOUT as csv
-    # puts "Directory,Space Consumed,Space Used,File Count,Owner,Group,Modification Time, Replication"
+    # puts "Directory,Space Consumed,Space Quota,Space Used,File Count,Owner,Group,Modification Time, Replication"
     outer_fs = fs.list_status(top_dir)
     @total_dir_count += outer_fs.length
     outer_fs.each do |myfs|
