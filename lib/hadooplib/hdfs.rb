@@ -219,6 +219,7 @@ class HDFS
           db_connection.transaction do
                 db_dataset.insert(
                   :path_suffix => "#{inner_dir}",
+                  :type => "DIRECTORY",
                   :space_consumed => "#{space_consumed}",
                   :space_quota => "#{space_quota}",
                   :space_used => "#{space_used}",
@@ -249,6 +250,7 @@ class HDFS
           db_connection.transaction do
                 db_dataset.insert(
                   :path_suffix => "#{dir_with_file}",
+                  :type => "FILE",
                   :space_consumed => "#{space_consumed}",
                   :space_quota => "#{space_quota}",
                   :space_used => "#{space_used}",
