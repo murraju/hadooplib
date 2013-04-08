@@ -233,7 +233,7 @@ class HDFS
                   :created_at => @created_at = Time.now
                   )
                 end
-          puts "Created record #{inner_dir}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}:#{block_size}"
+          puts "Created record #{inner_dir}:#{type}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}:#{block_size}"
           hdfs_recurse_write_to_db(inner_path, fs, uri, cs, db_connection, db_dataset) 
         else
           dir_with_file = myfs.get_path.to_s.gsub(uri, "")
@@ -265,7 +265,7 @@ class HDFS
                   )
         
                 end
-            puts "Created record #{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}:#{block_size}"   
+            puts "Created record #{dir_with_file}:#{type}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}:#{block_size}"   
         end
     
     end
