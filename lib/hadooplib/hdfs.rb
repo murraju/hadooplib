@@ -272,7 +272,7 @@ class HDFS
   
   end
 
-  def get_data_nodes
+  def get_data_nodes(fs)
 
     hosts = {}
     nodes = fs.get_data_node_stats
