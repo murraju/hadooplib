@@ -76,7 +76,6 @@ import org.apache.hadoop.fs.FSDataOutputStream
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.hdfs.DFSClient
 import org.apache.hadoop.hdfs.DistributedFileSystem
-import org.apache.hadoop.hdfs.DistributedFileSystem
 import org.apache.hadoop.hdfs.protocol.DatanodeInfo
 
 
