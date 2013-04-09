@@ -281,9 +281,9 @@ class HDFS
     end
     hosts.to_json
     
+  end
+
 end
-
-
 
 
 
