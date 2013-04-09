@@ -272,6 +272,15 @@ class HDFS
   
   end
 
+  def get_data_nodes
+
+    hosts = {}
+    nodes = fs.get_data_node_stats
+    nodes.each do |node|
+      hosts  = { :data_node => "#{node}" }
+    end
+    hosts.to_json
+    
 end
 
 
