@@ -24,20 +24,13 @@ require 'hadooplib/hdfs'
 require 'hadooplib/jars/commons-configuration-1.9.jar'
 require 'hadooplib/jars/commons-lang-2.6.jar'
 require 'hadooplib/jars/commons-logging-1.1.1.jar'
-require 'hadooplib/jars/hadoop-ant-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-ant.jar'
-require 'hadooplib/jars/hadoop-client-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-client.jar'
-require 'hadooplib/jars/hadoop-core-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-core.jar'
-require 'hadooplib/jars/hadoop-examples-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-examples.jar'
-require 'hadooplib/jars/hadoop-minicluster-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-minicluster.jar'
-require 'hadooplib/jars/hadoop-test-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-test.jar'
-require 'hadooplib/jars/hadoop-tools-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-tools.jar'
+require 'hadooplib/jars/hadoop-ant-1.1.2.jar'
+require 'hadooplib/jars/hadoop-client-1.1.2.jar'
+require 'hadooplib/jars/hadoop-core-1.1.2.jar'
+require 'hadooplib/jars/hadoop-examples-1.1.2.jar'
+require 'hadooplib/jars/hadoop-minicluster-1.1.2.jar'
+require 'hadooplib/jars/hadoop-test-1.1.2.jar'
+require 'hadooplib/jars/hadoop-tools-1.1.2.jar'
 
 
 
@@ -86,7 +79,7 @@ java_import org.apache.hadoop.mapred.jobcontrol.JobControl
 java_import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob
 java_import org.apache.hadoop.mapred.JobQueueInfo
 java_import org.apache.hadoop.mapreduce.Job
-java_import org.apache.hadoop.mapred.JobClient
+#java_import org.apache.hadoop.mapred.JobClient
 
 
 
