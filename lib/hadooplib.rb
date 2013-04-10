@@ -73,13 +73,13 @@ java_import org.apache.hadoop.hdfs.protocol.DatanodeInfo
 
 
 java_import org.apache.hadoop.mapred.JobConf
+java_import org.apache.hadoop.mapred.JobQueueInfo
+java_import org.apache.hadoop.mapred.jobcontrol.JobControl
 java_import org.apache.hadoop.mapreduce.ClusterMetrics
 java_import org.apache.hadoop.mapreduce.JobStatus
-java_import org.apache.hadoop.mapred.jobcontrol.JobControl
 java_import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob
-java_import org.apache.hadoop.mapred.JobQueueInfo
 java_import org.apache.hadoop.mapreduce.Job
-java_import org.apache.hadoop.mapred.JobClient
+
 
 
 
