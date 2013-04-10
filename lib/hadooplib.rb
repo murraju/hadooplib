@@ -21,24 +21,31 @@ require 'nokogiri'
 require 'rest-client'
 require 'json'
 require 'hadooplib/hdfs'
-require 'hadooplib/jars/commons-configuration-1.9.jar'
-require 'hadooplib/jars/commons-lang-2.6.jar'
-require 'hadooplib/jars/commons-logging-1.1.1.jar'
-require 'hadooplib/jars/hadoop-ant-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-ant.jar'
-require 'hadooplib/jars/hadoop-client-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-client.jar'
-require 'hadooplib/jars/hadoop-core-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-core.jar'
-require 'hadooplib/jars/hadoop-examples-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-examples.jar'
-require 'hadooplib/jars/hadoop-minicluster-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-minicluster.jar'
-require 'hadooplib/jars/hadoop-test-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-test.jar'
-require 'hadooplib/jars/hadoop-tools-1.1.2.21.jar'
-require 'hadooplib/jars/hadoop-tools.jar'
+# require 'hadooplib/jars/commons-configuration-1.9.jar'
+# require 'hadooplib/jars/commons-lang-2.6.jar'
+# require 'hadooplib/jars/commons-logging-1.1.1.jar'
+# require 'hadooplib/jars/hadoop-ant-1.1.2.21.jar'
+# require 'hadooplib/jars/hadoop-ant.jar'
+# require 'hadooplib/jars/hadoop-client-1.1.2.21.jar'
+# require 'hadooplib/jars/hadoop-client.jar'
+# require 'hadooplib/jars/hadoop-core-1.1.2.21.jar'
+# require 'hadooplib/jars/hadoop-core.jar'
+# require 'hadooplib/jars/hadoop-examples-1.1.2.21.jar'
+# require 'hadooplib/jars/hadoop-examples.jar'
+# require 'hadooplib/jars/hadoop-minicluster-1.1.2.21.jar'
+# require 'hadooplib/jars/hadoop-minicluster.jar'
+# require 'hadooplib/jars/hadoop-test-1.1.2.21.jar'
+# require 'hadooplib/jars/hadoop-test.jar'
+# require 'hadooplib/jars/hadoop-tools-1.1.2.21.jar'
+# require 'hadooplib/jars/hadoop-tools.jar'
 
+require 'hadooplib/jars/hadoop-ant-1.0.4.jar'
+require 'hadooplib/jars/hadoop-client-1.0.4.jar'
+require 'hadooplib/jars/hadoop-core-1.0.4.jar'
+require 'hadooplib/jars/hadoop-examples-1.0.4.jar'
+require 'hadooplib/jars/hadoop-minicluster-1.0.4.jar'
+require 'hadooplib/jars/hadoop-test-1.0.4.jar'
+require 'hadooplib/jars/hadoop-tools-1.0.4.jar'
 
 
 #Load imports
@@ -80,7 +87,13 @@ import org.apache.hadoop.hdfs.protocol.DatanodeInfo
 
 
 import org.apache.hadoop.mapred.JobConf
-
+import org.apache.hadoop.mapreduce.ClusterMetrics
+import org.apache.hadoop.mapreduce.JobStatus
+import org.apache.hadoop.mapred.jobcontrol.JobControl
+import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob
+import org.apache.hadoop.mapred.JobClient
+import org.apache.hadoop.mapred.JobQueueInfo
+import org.apache.hadoop.mapreduce.Job
 
 
 
