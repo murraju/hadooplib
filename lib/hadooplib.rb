@@ -21,9 +21,9 @@ require 'nokogiri'
 require 'rest-client'
 require 'json'
 require 'hadooplib/hdfs'
-# require 'hadooplib/jars/commons-configuration-1.9.jar'
-# require 'hadooplib/jars/commons-lang-2.6.jar'
-# require 'hadooplib/jars/commons-logging-1.1.1.jar'
+require 'hadooplib/jars/commons-configuration-1.9.jar'
+require 'hadooplib/jars/commons-lang-2.6.jar'
+require 'hadooplib/jars/commons-logging-1.1.1.jar'
 # require 'hadooplib/jars/hadoop-ant-1.1.2.21.jar'
 # require 'hadooplib/jars/hadoop-ant.jar'
 # require 'hadooplib/jars/hadoop-client-1.1.2.21.jar'
@@ -48,52 +48,52 @@ require 'hadooplib/jars/hadoop-test-1.0.4.jar'
 require 'hadooplib/jars/hadoop-tools-1.0.4.jar'
 
 
-#Load imports
-import java.net.URL
-import java.net.InetSocketAddress
-import java.text.SimpleDateFormat
-import java.util.Collection
-import java.util.List
+#Load java_imports
+java_import java.net.URL
+java_import java.net.InetSocketAddress
+java_import java.text.SimpleDateFormat
+java_import java.util.Collection
+java_import java.util.List
 
-# import java.io.BufferedInputStream
-# import java.io.BufferedOutputStream
-# import java.io.File;
-# import java.io.FileInputStream
-# import java.io.FileOutputStream
-# import java.io.InputStream
-# import java.io.OutputStream
+# java_import java.io.BufferedInputStream
+# java_import java.io.BufferedOutputStream
+# java_import java.io.File;
+# java_import java.io.FileInputStream
+# java_import java.io.FileOutputStream
+# java_import java.io.InputStream
+# java_import java.io.OutputStream
 
-import java.io.IOException
+java_import java.io.IOException
 
-import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.fs.ContentSummary
-import org.apache.hadoop.fs.DU
-import org.apache.hadoop.fs.FileStatus
-import org.apache.hadoop.fs.FileSystem
-import org.apache.hadoop.fs.FileUtil
-import org.apache.hadoop.fs.FsShell
-import org.apache.hadoop.fs.Path
-import org.apache.hadoop.fs.PathFilter
-import org.apache.hadoop.fs.ContentSummary
-import org.apache.hadoop.fs.FileStatus
-import org.apache.hadoop.fs.FileSystem
-import org.apache.hadoop.fs.BlockLocation
-import org.apache.hadoop.fs.FSDataInputStream
-import org.apache.hadoop.fs.FSDataOutputStream
-import org.apache.hadoop.fs.Path
-import org.apache.hadoop.hdfs.DFSClient
-import org.apache.hadoop.hdfs.DistributedFileSystem
-import org.apache.hadoop.hdfs.protocol.DatanodeInfo
+java_import org.apache.hadoop.conf.Configuration
+java_import org.apache.hadoop.fs.ContentSummary
+java_import org.apache.hadoop.fs.DU
+java_import org.apache.hadoop.fs.FileStatus
+java_import org.apache.hadoop.fs.FileSystem
+java_import org.apache.hadoop.fs.FileUtil
+java_import org.apache.hadoop.fs.FsShell
+java_import org.apache.hadoop.fs.Path
+java_import org.apache.hadoop.fs.PathFilter
+java_import org.apache.hadoop.fs.ContentSummary
+java_import org.apache.hadoop.fs.FileStatus
+java_import org.apache.hadoop.fs.FileSystem
+java_import org.apache.hadoop.fs.BlockLocation
+java_import org.apache.hadoop.fs.FSDataInputStream
+java_import org.apache.hadoop.fs.FSDataOutputStream
+java_import org.apache.hadoop.fs.Path
+java_import org.apache.hadoop.hdfs.DFSClient
+java_import org.apache.hadoop.hdfs.DistributedFileSystem
+java_import org.apache.hadoop.hdfs.protocol.DatanodeInfo
 
 
-import org.apache.hadoop.mapred.JobConf
-import org.apache.hadoop.mapreduce.ClusterMetrics
-import org.apache.hadoop.mapreduce.JobStatus
-import org.apache.hadoop.mapred.jobcontrol.JobControl
-import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob
-import org.apache.hadoop.mapred.JobClient
-import org.apache.hadoop.mapred.JobQueueInfo
-import org.apache.hadoop.mapreduce.Job
+java_import org.apache.hadoop.mapred.JobConf
+java_import org.apache.hadoop.mapreduce.ClusterMetrics
+java_import org.apache.hadoop.mapreduce.JobStatus
+java_import org.apache.hadoop.mapred.jobcontrol.JobControl
+java_import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob
+java_import org.apache.hadoop.mapred.JobQueueInfo
+java_import org.apache.hadoop.mapreduce.Job
+java_import org.apache.hadoop.mapred.JobClient
 
 
 
