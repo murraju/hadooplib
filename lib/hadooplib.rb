@@ -79,7 +79,7 @@ java_import org.apache.hadoop.mapred.jobcontrol.JobControl
 java_import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob
 java_import org.apache.hadoop.mapred.JobQueueInfo
 java_import org.apache.hadoop.mapreduce.Job
-#java_import org.apache.hadoop.mapred.JobClient
+java_import org.apache.hadoop.mapred.JobClient
 
 
 
