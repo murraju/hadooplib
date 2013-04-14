@@ -43,7 +43,6 @@ class MapReduce
 			start_time = item['startTime']
 			job_state = item['state']
 			user = item['user']
-			puts job_id, map_percent_complete
 
 			db_connection.transaction do
 			    db_dataset.insert(
@@ -59,6 +58,7 @@ class MapReduce
 			      :created_at => @created_at = Time.now
 			      )
 			 end
+			 puts "Created record #{job_id}:#{map_percent_complete}:#{job_name}:#{job_priority}:#{reduce_percent_complete}:#{scheduling_info}:#{start_time}:#{job_name}:#{user}"
 		end		
 	end
 end
