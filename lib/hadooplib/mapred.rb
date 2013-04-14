@@ -37,28 +37,33 @@ class MapReduce
 		jobs = JSON.parse(json)
 
 		jobs.each do |item|
-			item.each do |k, v|
-				
-			end
+			job_id = item['jobid']
+			map_percent_complete = item['mapComplete']
+			job_name = item['name']
+			job_priority = item['priority']
+			reduce_percent_complete = item['reduceComplete']
+			scheduling_info = item['schedulingInfo']
+			start_time = item['startTime']
+			job_state = item['state']
+			user = item['user']
+			puts job_id, map_percent_complete
+			db_connection.transaction do
+			    db_dataset.insert(
+			      :job_id => "#{job_id}",
+			      :map_percent_complete => "#{map_percent_complete}",
+			      :job_name = "#{job_name}",
+			      :job_priority => "#{job_priority}",
+			      :reduce_percent_complete => "#{reduce_percent_complete}",
+			      :scheduling_info => "#{scheduling_info}",
+			      :start_time => "#{start_time}",
+			      :job_name => "#{job_name}",
+			      :user => "#{user}",
+			      :created_at => @created_at = Time.now
+			      )
+			 end
 		end
 
-		db_connection.transaction do
-		    db_dataset.insert(
-		      :path_suffix => "#{inner_dir}",
-		      :path_type => "DIRECTORY",
-		      :space_consumed => "#{space_consumed}",
-		      :space_quota => "#{space_quota}",
-		      :space_used => "#{space_used}",
-		      :file_count => "#{file_count}",
-		      :user => "#{user}",
-		      :group => "#{group}",
-		      :access_time => "#{access_time}",
-		      :replication => "#{replication}",
-		      :permission => "#{permission}",
-		      :block_size => "#{block_size}",
-		      :created_at => @created_at = Time.now
-		      )
-		    end
+
 
 		
 	end
