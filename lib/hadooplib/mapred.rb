@@ -15,5 +15,51 @@
 # limitations under the License.
 #
 
-conf = JobConf.new
-conf.set("mapred.job.tracker", "localhost:8021")
+# This implementation uses huahin-manager for MapReduce until mapred/mapreduce api issues are resolved.
+# There currently is a problem importing JobClient within JRuby. Extending huahin-manager is another option. 
+
+class MapReduce
+
+	def initialize
+		#TODO - pass url as part of configuration
+		@mapred_rest_api_url = "http://localhost:9010"
+	end
+
+	def get_all_jobs
+
+		json = RestClient.get "http://localhost:9010/job/list"
+		return json
+
+	end
+
+	def write_to_db(json, db_connection, db_dataset)
+
+		jobs = JSON.parse(json)
+
+		jobs.each do |item|
+			item.each do |k, v|
+				
+			end
+		end
+
+		db_connection.transaction do
+		    db_dataset.insert(
+		      :path_suffix => "#{inner_dir}",
+		      :path_type => "DIRECTORY",
+		      :space_consumed => "#{space_consumed}",
+		      :space_quota => "#{space_quota}",
+		      :space_used => "#{space_used}",
+		      :file_count => "#{file_count}",
+		      :user => "#{user}",
+		      :group => "#{group}",
+		      :access_time => "#{access_time}",
+		      :replication => "#{replication}",
+		      :permission => "#{permission}",
+		      :block_size => "#{block_size}",
+		      :created_at => @created_at = Time.now
+		      )
+		    end
+
+		
+	end
+end

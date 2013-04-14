@@ -6,12 +6,12 @@ A JRuby based Hadoop Client Library allowing to build Hadoop Management Applicat
 
 Version 0.0.1
 
-First set of HDFS functions.
+First set of HDFS and MapReduce functions. This implementation uses http://huahinframework.org/huahin-manager/ for MapReduce until mapred/mapreduce api issues are resolved. There currently is a problem importing JobClient within JRuby 
 
 Requirements
 ============
 
-Java 1.6 or 1.7 (OpenJDK or HotSpotVM) with JRuby 1.7.3
+Java 1.6 or 1.7 (OpenJDK or HotSpotVM) with JRuby >= 1.7.3 
 
 Install
 =======
@@ -56,13 +56,14 @@ Features
 ========
 
 1. HDFS - get HDFS metrics after recursively traversing the filesystem. Output to console, csv, or db (postgres). 
-2. MapRed - in-progress (check for updates)
+2. MapRed - get MapReduce metics and write to DB
 
 
 ToDo
 ====
 
-*More HDFS and begin MapRed functions
+*More HDFS and MapRed functions
+*Migrate to MapReduce native Java APIs or extend huahin-manager
 
 
 Contributing to hadooplib
