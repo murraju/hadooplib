@@ -16,10 +16,7 @@
 #
 
 
-
-
 class HDFS
-  
   # Initialize
   # Default Name example - hdfs://localhost:8020
   # Path example - '/'
@@ -41,7 +38,6 @@ class HDFS
 
 
   def hdfs_recurse(top_dir, fs, uri, cs)
-  
     # Write to JSON
     outer_fs = fs.list_status(top_dir)
     @total_dir_count += outer_fs.length
@@ -156,7 +152,6 @@ class HDFS
 
   
   def hdfs_recurse_write_to_stdout(top_dir, fs, uri, cs)
-    
     # Write to STDOUT as csv
     # puts "Directory,Space Consumed,Space Quota,Space Used,File Count,Owner,Group,Modification Time, Replication"
     outer_fs = fs.list_status(top_dir)
@@ -194,9 +189,7 @@ class HDFS
   end
 
   def hdfs_recurse_write_to_db(top_dir, fs, uri, cs, db_connection, db_dataset)
-    
     # Write to DB. Currently has dependency on Sequel and Postgres
-    
     outer_fs = fs.list_status(top_dir)
     @total_dir_count += outer_fs.length
     outer_fs.each do |myfs|
@@ -267,22 +260,17 @@ class HDFS
                 end
             puts "Created record #{dir_with_file}:#{space_consumed}:#{space_quota}:#{space_used}:#{file_count}:#{user}:#{group}:#{access_time}:#{replication}:#{permission}:#{block_size}"   
         end
-    
     end
-  
   end
 
   def get_data_nodes(fs)
-
     hosts = {}
     nodes = fs.get_data_node_stats
     nodes.each do |node|
       hosts  = { :data_node => "#{node}" }
     end
     hosts.to_json
-    
   end
-
 end
 
 
