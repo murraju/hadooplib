@@ -48,7 +48,7 @@ class MapReduce
 			    db_dataset.insert(
 			      :job_id => "#{job_id}",
 			      :map_percent_complete => "#{map_percent_complete}",
-			      :job_name = "#{job_name}",
+			      :job_name => "#{job_name}",
 			      :job_priority => "#{job_priority}",
 			      :reduce_percent_complete => "#{reduce_percent_complete}",
 			      :scheduling_info => "#{scheduling_info}",
