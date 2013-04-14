@@ -35,10 +35,10 @@ class MapReduce
 
 		jobs.each do |item|
 			job_id = item['jobid']
-			map_percent_complete = item['mapComplete']
+			map_complete_percent = item['mapComplete']
 			job_name = item['name']
 			job_priority = item['priority']
-			reduce_percent_complete = item['reduceComplete']
+			reduce_complete_percent = item['reduceComplete']
 			scheduling_info = item['schedulingInfo']
 			start_time = item['startTime']
 			job_state = item['state']
@@ -47,10 +47,10 @@ class MapReduce
 			db_connection.transaction do
 			    db_dataset.insert(
 			      :job_id => "#{job_id}",
-			      :map_percent_complete => "#{map_percent_complete}",
+			      :map_complete_percent => "#{map_complete_percent}",
 			      :job_name => "#{job_name}",
 			      :job_priority => "#{job_priority}",
-			      :reduce_percent_complete => "#{reduce_percent_complete}",
+			      :reduce_complete_percent => "#{reduce_complete_percent}",
 			      :scheduling_info => "#{scheduling_info}",
 			      :start_time => "#{start_time}",
 			      :job_name => "#{job_name}",
