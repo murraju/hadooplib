@@ -26,7 +26,7 @@ class MapReduce
 	end
 
 	def get_all_jobs
-		json = RestClient.get "http://localhost:9010/job/list"
+		json = RestClient.get "#{@mapred_rest_api_url}/job/list"
 		return json
 	end
 
