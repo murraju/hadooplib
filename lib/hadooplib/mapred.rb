@@ -26,14 +26,11 @@ class MapReduce
 	end
 
 	def get_all_jobs
-
 		json = RestClient.get "http://localhost:9010/job/list"
 		return json
-
 	end
 
 	def write_to_db(json, db_connection, db_dataset)
-
 		jobs = JSON.parse(json)
 
 		jobs.each do |item|
@@ -47,6 +44,7 @@ class MapReduce
 			job_state = item['state']
 			user = item['user']
 			puts job_id, map_percent_complete
+
 			db_connection.transaction do
 			    db_dataset.insert(
 			      :job_id => "#{job_id}",
@@ -61,10 +59,6 @@ class MapReduce
 			      :created_at => @created_at = Time.now
 			      )
 			 end
-		end
-
-
-
-		
+		end		
 	end
 end
