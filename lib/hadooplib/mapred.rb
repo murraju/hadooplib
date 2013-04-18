@@ -54,11 +54,12 @@ class MapReduce
 			      :scheduling_info => "#{scheduling_info}",
 			      :start_time => "#{start_time}",
 			      :job_name => "#{job_name}",
+			      :job_state => "#{job_state}",
 			      :user => "#{user}",
 			      :created_at => @created_at = Time.now
 			      )
 			 end
-			 puts "Created record #{job_id}:#{map_complete_percent}:#{job_name}:#{job_priority}:#{reduce_complete_percent}:#{scheduling_info}:#{start_time}:#{job_name}:#{user}"
+			 puts "Created record #{job_id}:#{map_complete_percent}:#{job_name}:#{job_priority}:#{reduce_complete_percent}:#{scheduling_info}:#{start_time}:#{job_name}:#{job_state}:#{user}"
 		end		
 	end
 end
