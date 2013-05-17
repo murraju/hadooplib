@@ -83,9 +83,9 @@ java_import org.apache.hadoop.mapreduce.Job
 java_import org.apache.hadoop.security.UserGroupInformation
 
 
-#Hadoop Env
+#Hadoop Env - refactor this!
 
-conf_dir = "/Users/rajum/Development/Tools/HadoopClient/hadoop-1.1.2/conf"
+conf_dir = ""
 # config files must be in classpath for hadoop to find them
 unless $CLASSPATH.include? conf_dir
   $CLASSPATH << conf_dir
@@ -108,6 +108,3 @@ puts "Found #{hdfs_site}"
 # otherwise it will use a different class loader.
 
 Java::java.lang.Thread.currentThread.setContextClassLoader(jruby_class_loader)
-
-
-

@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-# default to /etc/hadoop unless $HADOOP_HOME is set in the environment hadoop_conf = os.getenv("HADOOP_CONF_DIR","/etc/hadoop/conf") # add in desired XML files conf.addResource(hdfs.JURL('file://%s/core-site.xml' % hadoop_conf)) conf.addResource(hdfs.JURL('file://%s/hdfs-site.xml' % hadoop_conf)) conf.addResource(hdfs.JURL('file://%s/mapred-site.xml' % hadoop_conf)) # and add in a special directive to use Kerberos conf.set("hadoop.security.authentication", "kerberos")
-
 
 class HDFS
   # Initialize
@@ -29,6 +27,10 @@ class HDFS
     conf.get('fs.default.name')
     conf.set("hadoop.security.group.mapping", "org.apache.hadoop.security.ShellBasedUnixGroupsMapping")
     UserGroupInformation.setConfiguration(conf)
+    principal = ''
+    keytab_file = ''
+    puts "Logging in as #{principal} with keytab #{keytab_file}"
+    UserGroupInformation.loginUserFromKeytab(principal, keytab_file)
     @fs=org.apache.hadoop.fs.FileSystem.get(conf)
     @top_dir=Path.new(path)
     @uri=@fs.get_uri.to_s
