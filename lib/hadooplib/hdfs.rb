@@ -24,6 +24,9 @@ class HDFS
   def initialize(default_name, path)
     conf = Configuration.new
     conf.set("fs.default.name", default_name)
+    # conf.add_resource("/opt/app/hdp-core/etc/hadoop/conf/core-site.xml")
+    # conf.add_resource("/opt/app/hdp-core/etc/hadoop/conf/hdfs-site.xml")
+    # conf.add_resource("/opt/app/hdp-core/etc/hadoop/conf/mapred-site.xml")
     @fs=org.apache.hadoop.fs.FileSystem.get(conf)
     @top_dir=Path.new(path)
     @uri=@fs.get_uri.to_s
