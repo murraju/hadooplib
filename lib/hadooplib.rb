@@ -34,7 +34,7 @@ require 'hadooplib/jars/hadoop-test-1.1.2.jar'
 require 'hadooplib/jars/hadoop-tools-1.1.2.jar'
 
 
-$CLASSPATH << "/Users/rajum/Development/Tools/HadoopClient/hadoop-1.1.2/conf"
+#$CLASSPATH << "/Users/rajum/Development/Tools/HadoopClient/hadoop-1.1.2/conf"
 
 
 #Load java_imports
