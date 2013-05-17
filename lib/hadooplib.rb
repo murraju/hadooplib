@@ -52,6 +52,7 @@ java_import java.util.List
 java_import java.io.IOException
 
 java_import org.apache.hadoop.conf.Configuration
+
 java_import org.apache.hadoop.fs.ContentSummary
 java_import org.apache.hadoop.fs.DU
 java_import org.apache.hadoop.fs.FileStatus
@@ -67,6 +68,7 @@ java_import org.apache.hadoop.fs.BlockLocation
 java_import org.apache.hadoop.fs.FSDataInputStream
 java_import org.apache.hadoop.fs.FSDataOutputStream
 java_import org.apache.hadoop.fs.Path
+
 java_import org.apache.hadoop.hdfs.DFSClient
 java_import org.apache.hadoop.hdfs.DistributedFileSystem
 java_import org.apache.hadoop.hdfs.protocol.DatanodeInfo
@@ -75,6 +77,7 @@ java_import org.apache.hadoop.hdfs.protocol.DatanodeInfo
 java_import org.apache.hadoop.mapred.JobConf
 java_import org.apache.hadoop.mapred.JobQueueInfo
 java_import org.apache.hadoop.mapred.jobcontrol.JobControl
+
 java_import org.apache.hadoop.mapreduce.ClusterMetrics
 java_import org.apache.hadoop.mapreduce.JobStatus
 java_import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob
@@ -83,26 +86,8 @@ java_import org.apache.hadoop.mapreduce.Job
 java_import org.apache.hadoop.security.UserGroupInformation
 
 
-#Hadoop Env - refactor this!
-
-conf_dir = ""
-# config files must be in classpath for hadoop to find them
-unless $CLASSPATH.include? conf_dir
-  $CLASSPATH << conf_dir
-end
-
 # The JRuby class loader should be able to find resources on the classpath above.
 jruby_class_loader = JRuby.runtime.getJRubyClassLoader
-
-
-core_site = jruby_class_loader.getResource("core-site.xml")
-hdfs_site = jruby_class_loader.getResource("hdfs-site.xml")
-
-raise "Could not find core-site.xml" unless core_site
-puts "Found #{core_site}"
-
-raise "Could not find hdfs-site.xml" unless hdfs_site
-puts "Found #{hdfs_site}"
 
 # Make Hadoop use the JRuby class loader so it finds the resources.  It appears that
 # otherwise it will use a different class loader.

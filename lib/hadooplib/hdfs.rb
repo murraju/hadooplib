@@ -21,14 +21,30 @@ class HDFS
   # Default Name example - hdfs://localhost:8020
   # Path example - '/'
   
-  def initialize(default_name, path)
+  
+  def initialize(default_name, path, conf_dir, principal, keytab_file)
+    
+    # config files must be in classpath for hadoop to find them
+    unless $CLASSPATH.include? conf_dir
+      $CLASSPATH << conf_dir
+    end
+
+    core_site = jruby_class_loader.getResource("core-site.xml")
+    hdfs_site = jruby_class_loader.getResource("hdfs-site.xml")
+    
+    puts ''
+    raise "Could not find core-site.xml" unless core_site
+    puts "Found #{core_site}"
+
+    raise "Could not find hdfs-site.xml" unless hdfs_site
+    puts "Found #{hdfs_site}"
+    puts ''
+    
     conf = Configuration.new
     #conf.set("fs.default.name", default_name)
     conf.get('fs.default.name')
     conf.set("hadoop.security.group.mapping", "org.apache.hadoop.security.ShellBasedUnixGroupsMapping")
     UserGroupInformation.setConfiguration(conf)
-    principal = ''
-    keytab_file = ''
     puts "Logging in as #{principal} with keytab #{keytab_file}"
     UserGroupInformation.loginUserFromKeytab(principal, keytab_file)
     @fs=org.apache.hadoop.fs.FileSystem.get(conf)
