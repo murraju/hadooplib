@@ -22,7 +22,13 @@ class HDFS
   # Path example - '/'
   
   
-  def initialize(default_name, path, conf_dir, principal, keytab_file)
+  def initialize(default_name, path)
+    
+    config = File.read(Dir.home + "/.hadoop-manager/authentication/auth_config.json")
+    params = JSON.parse(config)
+    conf_dir =  params['hadoop_conf_dir']
+    principal = params['kerberos_principal']
+    keytab_file = params['kerberos_keytab_file']
     
     # config files must be in classpath for hadoop to find them
     unless $CLASSPATH.include? conf_dir
