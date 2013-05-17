@@ -56,7 +56,8 @@ class HDFS
     @total_dir_count = 0
     
     #Explicit return vs Ruby last
-    return @fs, @top_dir, @uri, @cs, @hdfs_items,  @total_file_count, @total_dir_count 
+    return @fs, @top_dir, @uri, @cs, @hdfs_items,  @total_file_count, @total_dir_count
+     
   end
 
 
