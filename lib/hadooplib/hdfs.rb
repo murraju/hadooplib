@@ -30,6 +30,14 @@ class HDFS
     principal = params['kerberos_principal']
     keytab_file = params['kerberos_keytab_file']
     
+    # The JRuby class loader should be able to find resources on the classpath above.
+    jruby_class_loader = JRuby.runtime.getJRubyClassLoader
+
+    # Make Hadoop use the JRuby class loader so it finds the resources.  It appears that
+    # otherwise it will use a different class loader.
+
+    Java::java.lang.Thread.currentThread.setContextClassLoader(jruby_class_loader)
+    
     # config files must be in classpath for hadoop to find them
     unless $CLASSPATH.include? conf_dir
       $CLASSPATH << conf_dir
